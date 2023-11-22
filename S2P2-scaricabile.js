@@ -39,20 +39,42 @@ const shippingCost = 50
 
 let customer = marco //cambia il valore qui per provare se il tuo algoritmo funziona!
 
-let total = 0
-for (const index = 0; index < prices.length; index++){
-  //applico lo sconto per ogni elemento del carrello
-const price = prices(index);
+//primo esercizio
 
-if(UserActivation.isAmbassador){
-  total = total + (price * 7/10)
-}else{
-  total = total + price
+let cart = 0
+for (let i = 0; i < prices.length; i++) {
+  const prezzo = prices[i]
+  cart += prezzo
 }
+if (customer.isAmbassador) {
+  cart = cart-(cart*30/100)
+} else {
+  //non si applica lo sconto
+}
+if (cart <= 100){
+  cart += shippingCost
 }
 
-if(total < 100) {
-  total = total + shippingCost
+//secondo esercizio
+
+const tuttiUtenti = []
+tuttiUtenti.push(marco, paul, amy)
+console.log(tuttiUtenti)
+for (let i = 0; i < tuttiUtenti.length; i++) {
+  const utente = tuttiUtenti[i]
+  let stringaBase = `${utente.name} ${utente.lastName} `
+  if (!utente.isAmbassador) {
+    stringaBase += "NON "
+  }
+  stringaBase += "e' un ambassador"
+  console.log(stringaBase)
 }
 
-console.log(total);
+let soloAmbassador = []
+for (let i = 0; i < tuttiUtenti.length; i++) {
+    const utente = tuttiUtenti[i];
+    if(utente.isAmbassador) {
+        soloAmbassador.push(utente)
+    }
+}
+console.log(soloAmbassador);
